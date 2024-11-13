@@ -1,22 +1,55 @@
-# Teamperature_Converter
+# Temperature Converter
+![Alt Text](./Image/mockup.png)
 
-
-
-A simple temperature converter that allows users to convert temperatures between Celsius, Fahrenheit, and Kelvin. The converter includes input validation to ensure all fields are filled before the conversion button is enabled.
 
 ## Project URL
-[https://roadmap.sh/projects/temperature-converter](https://roadmap.sh/projects/temperature-converter)
+
+You can view the project documentation and details at [Temperature Converter](https://roadmap.sh/projects/temperature-converter).
 
 ## Features
+
 - Converts temperatures between Celsius, Fahrenheit, and Kelvin.
-- Button is disabled until all fields (temperature input, from unit, and to unit) are filled.
-- Displays converted temperature below the form.
+- Disables the "Convert" button until all required fields are filled.
+- Displays the converted temperature in a clear, easy-to-read format.
 
 ## Demo
-You can see a live demo of the project at [https://roadmap.sh/projects/temperature-converter](https://roadmap.sh/projects/temperature-converter).
 
-## Installation
+View a live demo of this project [here](https://roadmap.sh/projects/temperature-converter).
+
+## Project Structure
+
+```bash
+Temperature_Converter/
+├── index.html          # Main HTML file
+├── CSS/
+│   └── style.css       # Styles for the temperature converter
+├── Image/
+│   └── mockup.png      # Image mockup of the converter
+├── JS/
+│   └── script.js       # JavaScript for temperature conversion logic
+└── README.md           # Project documentation        # Project documentation
+```
+
+# Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/aviralSri23455/Teamperature_Converter.git
+
+```bash
+git clone https://github.com/aviralSri23455/Temperature_Converter.git
+
+```
+
+2. Navigate to the project folder:
+
+```bash
+cd Temperature_Converter
+
+```
+
+3. Open **index.html** in your browser to use the temperature converter.
+
+# Usage
+- Enter a temperature value in the input field.
+- Select the "From" unit (Celsius, Fahrenheit, or Kelvin).
+- Select the "To" unit.
+- Click the "Convert" button to view the converted temperature.
