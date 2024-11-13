@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+    }
+    .converter {
+      border: 2px solid #333;
+      padding: 40px;
+      border-radius: 24px;
+      width: 800px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .converter h2 {
+      margin: 0;
+      font-size: 2.2em;
+      margin-bottom: 16px;
+    }
+    .converter p {
+      font-size: 1.2em;
+      color: #333;
+      margin: 0 0 32px;
+    }
+    .input-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    input, select {
+      font-size: 1.1em;
+      padding: 12px 16px;
+      border: 2px solid #333;
+      border-radius: 12px;
+      outline: none;
+      box-sizing: border-box;
+    }
+    input {
+      width: 120px;
+    }
+    select {
+      width: 200px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    button {
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 32px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .result {
+      margin-top: 24px;
+      color: #22c55e;
+      font-weight: bold;
+      font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="converter">
+  <h2>Temperature Converter</h2>
+  <p>Enter the temperature, select units and submit</p>
+  
+  <div class="input-group">
+    <input type="number" id="temperatureInput" placeholder="0.00">
+    <select id="fromUnit">
+      <option value="">From Unit</option>
+      <option value="Celsius">Celsius</option>
+      <option value="Fahrenheit">Fahrenheit</option>
+      <option value="Kelvin">Kelvin</option>
+    </select>
+    
+    <select id="toUnit">
+      <option value="">To Unit</option>
+      <option value="Celsius">Celsius</option>
+      <option value="Fahrenheit">Fahrenheit</option>
+      <option value="Kelvin">Kelvin</option>
+    </select>
+    
+    <button id="convertButton" disabled>Convert</button>
+  </div>
+  
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  const temperatureInput = document.getElementById("temperatureInput");
+  const fromUnit = document.getElementById("fromUnit");
+  const toUnit = document.getElementById("toUnit");
+  const convertButton = document.getElementById("convertButton");
+  const resultDiv = document.getElementById("result");
+
+  function updateButtonState() {
+    convertButton.disabled = !(temperatureInput.value && fromUnit.value && toUnit.value);
+  }
+
+  temperatureInput.addEventListener("input", updateButtonState);
+  fromUnit.addEventListener("change", updateButtonState);
+  toUnit.addEventListener("change", updateButtonState);
+
+  convertButton.addEventListener("click", () => {
+    const temperature = parseFloat(temperatureInput.value);
+    const from = fromUnit.value;
+    const to = toUnit.value;
+    let convertedTemperature;
+
+    if (from === to) {
+      convertedTemperature = temperature;
+    } else if (from === "Celsius" && to === "Fahrenheit") {
+      convertedTemperature = (temperature * 9/5) + 32;
+    } else if (from === "Celsius" && to === "Kelvin") {
+      convertedTemperature = temperature + 273.15;
+    } else if (from === "Fahrenheit" && to === "Celsius") {
+      convertedTemperature = (temperature - 32) * 5/9;
+    } else if (from === "Fahrenheit" && to === "Kelvin") {
+      convertedTemperature = (temperature - 32) * 5/9 + 273.15;
+    } else if (from === "Kelvin" && to === "Celsius") {
+      convertedTemperature = temperature - 273.15;
+    } else if (from === "Kelvin" && to === "Fahrenheit") {
+      convertedTemperature = (temperature - 273.15) * 9/5 + 32;
+    }
+
+    resultDiv.textContent = `${temperature} ${from} is ${convertedTemperature.toFixed(2)} ${to}`;
+  });
+</script>
+
+</body>
+</html>
